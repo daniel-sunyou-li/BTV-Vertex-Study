@@ -5,12 +5,12 @@ from DataFormats.FWLite import Events, Handle
 
 parser = ArgumentParser()
 parser.add_argument("-n", "--numEvents", default="-1", help="Total number of events to store")
-parser.add_argument("-V", "--verbose", action="store_true", help="Turn verbosity on")
-parser.add_argument("-s", "--save", action="store_true", help="Save event information to pickle file")
+parser.add_argument("-V", "--verbose",   action="store_true", help="Turn verbosity on")
+parser.add_argument("-s", "--save",      action="store_true", help="Save event information to pickle file")
+parser.add_argument("-f", "--file",      required=True, help="AOD file to analyze")
 args = parser.parse_args()
 
-events = Events("AOD.root")
-#event = events.__iter__().next()
+events = Events( args.file )
 
 VERBOSE = args.verbose
 EVENTS  = int(args.numEvents)
@@ -32,7 +32,6 @@ genParticles_handle = Handle("vector<reco::GenParticle>")
 print_indx = int(events.size()) / 10
 if EVENTS > 0:
     print_indx = EVENTS / 10
-
 
 for i, event in enumerate(events):
     # gen particles
@@ -82,6 +81,6 @@ if VERBOSE: print("Scanned over a total of {} events".format(i+1))
 
 if SAVE:
     print("Pickling vertexing information...")
-    data_file = open("AOD_PV.pkl","wb")
+    data_file = open( "AOD_PV_{}.pkl".format( i ), "wb" )
     pickle.dump( data, data_file )
     data_file.close()
