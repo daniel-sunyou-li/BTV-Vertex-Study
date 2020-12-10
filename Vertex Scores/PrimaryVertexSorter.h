@@ -72,10 +72,7 @@ class PrimaryVertexSorter : public edm::stream::EDProducer<> {
 
   void doConsumesForTiming(const edm::ParameterSet &iConfig) ;
   bool needsProductsForTiming() ;
-  std::pair<int,PrimaryVertexAssignment::Quality> runAlgo( const reco::VertexCollection& vertices, const typename ParticlesCollection::value_type & pf, cons
-t edm::ValueMap<float> *trackTimeTag,
-                                   const edm::ValueMap<float> *trackTimeResoTag, const edm::View<reco::Candidate>& jets, const TransientTrackBuilder& builde
-r) ;
+  std::pair<int,PrimaryVertexAssignment::Quality> runAlgo( const reco::VertexCollection& vertices, const typename ParticlesCollection::value_type & pf, const edm::ValueMap<float> *trackTimeTag, const edm::ValueMap<float> *trackTimeResoTag, const edm::View<reco::Candidate>& jets, const TransientTrackBuilder& builder); 
 };
 
 
@@ -213,8 +210,7 @@ using namespace reco;
   std::ofstream data_file;
   data_file.open( "sort_score.txt", std::ios_base::app );
   char columns[120];
-  int l = sprintf( columns, "%9s, %9s, %9s, %9s, %9s, %9s, %9s, %9s, %9s, %9s\n", "RECO X", "RECO Y", "RECO Z", "GEN X", "GEN Y", "GEN Z", "LEP", "JET", "ME
-T", "TOT" );
+  int l = sprintf( columns, "%9s, %9s, %9s, %9s, %9s, %9s, %9s, %9s, %9s, %9s\n", "RECO X", "RECO Y", "RECO Z", "GEN X", "GEN Y", "GEN Z", "LEP", "JET", "MET", "TOT" );
   std::cout << columns;
   data_file << columns;
 
@@ -234,8 +230,7 @@ T", "TOT" );
      vertexScoreOriginal[i]=s;
      scores.insert(std::pair<float,int>(-s,i));
      char buffer[120];
-     int m = sprintf( buffer, "%9.3f, %9.3f, %9.3f, %9.3f, %9.3f, %9.3f, %9.3f, %9.3f, %9.3f, %9.3f\n", pv_x, pv_y, pv_z, p_x, p_y, p_z, s_lep, s_jet, s_met
-, s );
+     int m = sprintf( buffer, "%9.3f, %9.3f, %9.3f, %9.3f, %9.3f, %9.3f, %9.3f, %9.3f, %9.3f, %9.3f\n", pv_x, pv_y, pv_z, p_x, p_y, p_z, s_lep, s_jet, s_met, s );
      data_file << buffer;
      std::cout << buffer;
   }
@@ -377,9 +372,7 @@ bool PrimaryVertexSorter<std::vector<reco::PFCandidate>>::needsProductsForTiming
 template<>
 std::pair<int,PrimaryVertexAssignment::Quality>
 PrimaryVertexSorter<std::vector<reco::RecoChargedRefCandidate>>::runAlgo( const reco::VertexCollection& vertices, const reco::RecoChargedRefCandidate & pf,
-const edm::ValueMap<float> *trackTimeTag,
-                                   const edm::ValueMap<float> *trackTimeResoTag, const edm::View<reco::Candidate>& jets, const TransientTrackBuilder& builde
-r)
+const edm::ValueMap<float> *trackTimeTag, const edm::ValueMap<float> *trackTimeResoTag, const edm::View<reco::Candidate>& jets, const TransientTrackBuilder& builder)
 {
     return assignmentAlgo_.chargedHadronVertex( vertices, pf, trackTimeTag, trackTimeResoTag, jets, builder);
 }
@@ -387,8 +380,7 @@ r)
 template<>
 std::pair<int,PrimaryVertexAssignment::Quality>
 PrimaryVertexSorter<std::vector<reco::PFCandidate>>::runAlgo( const reco::VertexCollection& vertices, const reco::PFCandidate & pf, const edm::ValueMap<floa
-t> *trackTimeTag,
-                                   const edm::ValueMap<float> *trackTimeResoTag, const edm::View<reco::Candidate>& jets, const TransientTrackBuilder& builde
+t> *trackTimeTag, const edm::ValueMap<float> *trackTimeResoTag, const edm::View<reco::Candidate>& jets, const TransientTrackBuilder& builde
 r)
 {
     return assignmentAlgo_.chargedHadronVertex( vertices, pf, jets, builder);
