@@ -9,7 +9,7 @@ Study the performance of the vertex sorting algorithm that operates on AOD files
     cmsenv
     git cms-addpkg CommonTools/RecoAlgos
     cd CommonTools/RecoAlgos/test/
-    git clone https://github.com/daniel-sunyou-li/BTV-Vertex-Study.git 
+    git clone https://github.com/daniel-sunyou-li/BTV_Vertex_Study.git 
     cd BTV-Vertex-Study/Vertex\ Scores/
     chmod u+rwx *
     ./setup.sh
