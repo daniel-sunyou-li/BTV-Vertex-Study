@@ -10,7 +10,7 @@ Study the performance of the vertex sorting algorithm that operates on AOD files
     git cms-addpkg CommonTools/RecoAlgos
     cd CommonTools/RecoAlgos/test/
     git clone https://github.com/daniel-sunyou-li/BTV_Vertex_Study.git 
-    cd BTV-Vertex-Study/Vertex\ Scores/
+    cd BTV_Vertex_Study/Vertex\ Scores/
     chmod u+rwx *
     ./setup.sh
     
@@ -19,14 +19,14 @@ First, replace the sorting algorithm code `/CommonTools/RecoAlgos/src/PrimaryVer
 
     cd CMSSW_10_6_16/src/CommonTools/RecoAlgos/src/
     rm PrimaryVertexSorting.cc
-    cd ../test/BTV-Vertex-Study/Vertex\ Scores/
+    cd ../test/BTV_Vertex_Study/Vertex\ Scores/
     cp PrimaryVertexSorting.cc ../../../src/
     
 Next, replace the `python` configuration script `/CommonTools/RecoAlgos/test/pvSorting.py` with the updated version in `/BTV-Vertex-Study/Vertex Scores/`.  Before moving, edit `/BTV-Vertex-Study/Vertex Scores/pvSorting.py` to edit the desired number of `events` (default = `5000`) and the desired file for `process.source`.
 
     cd CMSSW_10_6_16/src/CommonTools/RecoAlgos/test/
     rm pvSorting.py
-    cd BTV-Vertex-Study/Vertex\ Scores/
+    cd BTV_Vertex_Study/Vertex\ Scores/
     cp pvSorting.py ../../
     
 The updated sorting `.cc` files need to be recompiled:
