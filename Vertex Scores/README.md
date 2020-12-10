@@ -6,9 +6,13 @@ Study the performance of the vertex sorting algorithm that operates on AOD files
     cmsenv
     cmsrel CMSSW_10_6_16
     cd CMSSW_10_6_16/src/
+    cmsenv
     git cms-addpkg CommonTools/RecoAlgos
     cd CommonTools/RecoAlgos/test/
     git clone https://github.com/daniel-sunyou-li/BTV-Vertex-Study.git 
+    cd BTV-Vertex-Study/Vertex\ Scores/
+    chmod u+rwx *
+    ./setup.sh
     
 ## Running the sorting algorithm `pvSorting.py`
 First, replace the sorting algorithm code `/CommonTools/RecoAlgos/src/PrimaryVertexSorting.cc` with the updated version in `/BTV-Vertex-Study/Vertex Scores/`:
