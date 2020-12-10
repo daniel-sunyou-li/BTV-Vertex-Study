@@ -379,9 +379,7 @@ const edm::ValueMap<float> *trackTimeTag, const edm::ValueMap<float> *trackTimeR
 
 template<>
 std::pair<int,PrimaryVertexAssignment::Quality>
-PrimaryVertexSorter<std::vector<reco::PFCandidate>>::runAlgo( const reco::VertexCollection& vertices, const reco::PFCandidate & pf, const edm::ValueMap<floa
-t> *trackTimeTag, const edm::ValueMap<float> *trackTimeResoTag, const edm::View<reco::Candidate>& jets, const TransientTrackBuilder& builde
-r)
+PrimaryVertexSorter<std::vector<reco::PFCandidate>>::runAlgo( const reco::VertexCollection& vertices, const reco::PFCandidate & pf, const edm::ValueMap<float> *trackTimeTag, const edm::ValueMap<float> *trackTimeResoTag, const edm::View<reco::Candidate>& jets, const TransientTrackBuilder& builder)
 {
     return assignmentAlgo_.chargedHadronVertex( vertices, pf, jets, builder);
 }
