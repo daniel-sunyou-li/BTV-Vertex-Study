@@ -20,4 +20,4 @@ Before running the sorting algorithm, be sure to edit `/CommonTools/RecoAlgos/te
     cd /CMSSW_10_6_16/src/CommonTools/RecoAlgos/test/
     cmsRun pvSorting.py
     
-Output files made from the PF candidate-based algorithm will be tagged with 'pf', and the track-based with 'track'.
+Running `pvSorting.py` will produce a data file `score_pf_[# events].txt` containing `GEN` coordinates, `RECO` coordinates, and the vertex scores, and will produce a `ROOT` file containing the new collection of `sortedPrimaryVertices`, along with other assignment/sorting related quantities, defined in the presentation. Generally, output files made from the PF candidate-based algorithm will be tagged with 'pf', and the track-based with 'track'. When switching between the PF-based and track-based algorithms, be sure to re-run the `setup_pf.sh` script. 
