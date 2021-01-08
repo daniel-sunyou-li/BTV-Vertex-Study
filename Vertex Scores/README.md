@@ -11,6 +11,5 @@ Study the performance of the vertex sorting algorithm that operates on AOD files
     cd CommonTools/RecoAlgos/test/
     git clone https://github.com/daniel-sunyou-li/BTV_Vertex_Study.git 
     cd BTV_Vertex_Study/Vertex\ Scores/
-    chmod u+rwx *
 
 Be sure to recompile the `C++` files using `scram b` after making any edits.
