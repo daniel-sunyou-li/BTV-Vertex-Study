@@ -1,6 +1,7 @@
 # copy the analysis scripts to the /test/ directory
 echo Copying analysis script study_pv_sorting.py to CMSSW_10_6_16/src/CommonTools/RecoAlgos/test/
-cp study_pv_sorting.py ../../../
+cp study_pf_sorting.py ../../../
+cp pf_contents.py ../../../
 
 # replace the pvSorting.py script
 echo Updating CMSSW_10_6_16/src/CommonTools/RecoAlgos/test/pvSorting.py
