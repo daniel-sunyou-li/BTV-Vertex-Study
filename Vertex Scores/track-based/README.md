@@ -1,47 +1,27 @@
-# Vertex Scores -- Quick Start Instructions
+# Track Vertex Scores -- Quick Start Instructions
 
-Study the performance of the vertex sorting algorithm that operates on AOD files. The Github update can be found [here](https://github.com/cms-sw/cmssw/pull/7285/commits/539197c593270b7515a8b07c1891e3bfcd9fc89c#diff-184be42e35fb4bb9419eaba0e7f290f5). A presentation explaining the motivation behind the scoring algorithm can be found [here](https://indico.cern.ch/event/369417/contributions/1788757/attachments/734933/1008272/pv-sorting-xpog.pdf). The scripts in this directory are to be run on `CMSSW_10_6_16`.  Setup can be run on LXPLUS:
+The sorting algorithm defaults to using tracks as inputs, which allows for the rest of an analysis to benefit from a reconstruction based on the _improved_ sorted primary vertices. However, since tracks do not have an associated particle identification, the track-based scoring does not include a designated leptonic contribution.  
+The track objects are stored in the AOD format with the handle: `Handle( "vector<reco::RecoChargedRefCandidate>" )`, and with the label, `event.getByLabel( "trackRefsForJets", handle )`. A separate script, `track_contents.py`, can be used to see information available in the AOD collection of tracks.  
+Setup for the track-based sorting is as follows:
 
+    cd /CMSSW_10_6_16/src/BTV_Vertex_Study/Vertex\ Scores/track-based/
+    chmod u+rwx *
+    ./setup_track.sh
+    
+## Running the sorting algorithm 
+Before running the sorting algorithm, be sure to edit `/CommonTools/RecoAlgos/test/pvSorting.py` to specify which AOD file to run on in `process.source()` and the number of events (default = `5000`) should be stored in the resulting `.root` file.
+
+    cd CMSSW_10_6_16/src/CommonTools/RecoAlgos/src/
     source /cvmfs/cms.cern.ch/cmsset_default.sh
     cmsenv
-    cmsrel CMSSW_10_6_16
-    cd CMSSW_10_6_16/src/
-    cmsenv
-    git cms-addpkg CommonTools/RecoAlgos
-    cd CommonTools/RecoAlgos/test/
-    git clone https://github.com/daniel-sunyou-li/BTV_Vertex_Study.git 
-    cd BTV_Vertex_Study/Vertex\ Scores/
-    chmod u+rwx *
-    ./setup.sh
+    voms-proxy-init --voms cms
+    cd /CMSSW_10_6_16/src/CommonTools/RecoAlgos/test/
+    cmsRun pvSorting.py
     
-## Running the sorting algorithm `pvSorting.py`
-First, replace the sorting algorithm code `/CommonTools/RecoAlgos/src/PrimaryVertexSorting.cc` with the updated version in `/BTV-Vertex-Study/Vertex Scores/`:
-
-    cd CMSSW_10_6_16/src/CommonTools/RecoAlgos/src/
-    rm PrimaryVertexSorting.cc
-    cd ../test/BTV_Vertex_Study/Vertex\ Scores/
-    cp PrimaryVertexSorting.cc ../../../src/
-    
-Next, replace the `python` configuration script `/CommonTools/RecoAlgos/test/pvSorting.py` with the updated version in `/BTV-Vertex-Study/Vertex Scores/`.  Before moving, edit `/BTV-Vertex-Study/Vertex Scores/pvSorting.py` to edit the desired number of `events` (default = `5000`) and the desired file for `process.source`.
-
-    cd CMSSW_10_6_16/src/CommonTools/RecoAlgos/test/
-    rm pvSorting.py
-    cd BTV_Vertex_Study/Vertex\ Scores/
-    cp pvSorting.py ../../
-    
-The updated sorting `.cc` files need to be recompiled:
-
-    cd CMSSW_10_6_16/src/CommonTools/RecoAlgos/src/
-    scram b -j4
-
-The sorting algorithm can be run using:
-
-    cmsRun pvSorting.root
-    
-resulting in the production of `ROOT` file `AOD_[# events].root` containing the newly sorted vertices.  The scores for the jet, MET and lepton contributions as well as the vertex coordinates are stored in a separate `.txt` file `/test/sort_score.txt`.  
+Running `pvSorting.py` will produce a data file `score_track_[# events].txt` containing `GEN` coordinates, `RECO` coordinates, and the vertex scores, and will produce a `ROOT` file, `AOD_track_[# events].root`, containing the new collection of `sortedPrimaryVertices`, along with other assignment/sorting related quantities, defined in the presentation.  Generally, output files made from the track-based algorithm will be tagged with 'track', and the PF-baesd with 'pf'. When switching between the track-based and PF-based algorithms, be sure to re-run the `setup_track.sh` script.
     
 ## Running `study_pv_sorting.py`
-This script looks at the AOD_[# events].root file and  compares the coordinate values of the objects `genParticles`, `offlinePrimaryVertices` and `sortedPrimaryVertices.  The results are saved to a pickled file, `AOD_PV_[# events].pkl`
+This script looks at the AOD_[# events].root file and compares the coordinate values of the objects `genParticles`, `offlinePrimaryVertices` and `sortedPrimaryVertices.  The results are saved to a pickled file, `AOD_PV_[# events].pkl`
 
     python study_pv_sorting.py -f AOD_[# events].root -v -s
     
