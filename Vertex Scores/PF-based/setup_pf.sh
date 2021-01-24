@@ -12,6 +12,11 @@ echo Updating CMSSW_10_6_16/src/CommonTools/RecoAlgos/plugins/PrimaryVertexSorte
 rm ../../../../plugins/PrimaryVertexSorter.h
 cp PrimaryVertexSorter.h ../../../../plugins/
 
+# replace the PrimaryVertexSorter.cc script
+echo Updating CMSSW_10_6_16/src/CommonTools/RecoAlgos/plugins/PrimaryVertexSorter.cc
+rm ../../../../plugins/PrimaryVertexSorter.cc
+cp PrimaryVertexSorter.cc ../../../../plugins/
+
 # replace the sortedPrimaryVertices_cfi.py script
 echo Updating CMSSW_10_6_16/src/CommonTools/RecoAlgos/python/sortedPrimaryVertices_cfi.py
 rm ../../../../python/sortedPrimaryVertices_cfi.py
