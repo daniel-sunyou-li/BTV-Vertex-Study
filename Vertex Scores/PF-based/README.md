@@ -8,7 +8,7 @@ Setup for the PF-based sorting is as follows:
 
     cd /CMSSW_10_6_16/src/BTV_Vertex_Study/Vertex\ Scores/PF-based/
     chmod u+rwx *
-    ./setup_pf.sh
+    ./setup_pf.sh 3D # 4D
     
 ## Running the sorting algorithm
 Before running the sorting algorithm, be sure to edit `/CommonTools/RecoAlgos/test/pvSorting.py` to specify which AOD file to run on in `process.source()` and the number of events (default = `5000`) should be stored in the resulting `.root` file.  
