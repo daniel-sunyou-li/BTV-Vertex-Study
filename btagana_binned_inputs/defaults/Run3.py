@@ -1,0 +1,5 @@
+common = {
+  "groups": [
+    "EventInfo", "PV" 
+  ]
+}
