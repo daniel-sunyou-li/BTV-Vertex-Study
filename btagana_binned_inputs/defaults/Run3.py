@@ -1,6 +1,6 @@
 common = {
   "groups": [
-    "custom", # add this to varGroups.py
+    "custom", # add this to varGroups_cfi.py
     "EventInfo", "PV",
     "JetInfo", "JetSV",
     "JetDeepFlavour", "JetDeepCSV", "DeepFlavourFeat",
