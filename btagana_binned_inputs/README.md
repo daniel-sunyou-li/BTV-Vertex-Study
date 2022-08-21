@@ -33,8 +33,8 @@
 
 2. Run with the options:
 
-      voms-proxy-init --voms cms
-      cmsRun bTagAnalyzerLegacy_cfi.py runOnData=False defaults=Run3 runEventInfo=True
+        voms-proxy-init --voms cms
+        cmsRun runBTagAnalyzer_cfg.py runOnData=False defaults=Run3 runEventInfo=True
 
 4. Upload the output ntuple `ROOT` file to [SWAN](swan.cern.ch) and run the three notebooks (as needed)
 * Methods are defined in `.py` files
