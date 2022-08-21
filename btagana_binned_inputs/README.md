@@ -12,11 +12,11 @@
 
       git cms-init
       
-      git clone -b 12_2_X --recursive https://github.com/johnalison/RecoBTag-PerformanceMeasurements.git RecoBTag/PerformanceMeasurements
+      git clone -b 12_2_X --recursive https://github.com/cms-btv-pog/RecoBTag-PerformanceMeasurements.git RecoBTag/PerformanceMeasurements
       
       scram b -j 12
 
-* Create a new [default](https://github.com/cms-btv-pog/RecoBTag-PerformanceMeasurements/tree/9_4_X/python/defaults) configuration for 2016/2017/2018 with the corresponding miniAOD sample you would like to run
+* Create a new [default](https://github.com/cms-btv-pog/RecoBTag-PerformanceMeasurements/tree/9_4_X/python/defaults) configuration for Run3 with the corresponding miniAOD sample you would like to run
 * Create a new [variable group](https://github.com/cms-btv-pog/RecoBTag-PerformanceMeasurements/blob/9_4_X/python/varGroups_cfi.py) in varGroups_cfi.py:
 
       cms.PSet(
