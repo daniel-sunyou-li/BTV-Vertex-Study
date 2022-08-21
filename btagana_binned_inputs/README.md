@@ -13,11 +13,7 @@
       description = cms.string( "Variables for studying PV reconstruction" ),
       variables   = cms.vstring(
         "nTrkTagVarCSV",
-        "nPV", "PV_x", "PV_y", "PV_z", "PV_chi2",
         "GenPVz",
-        "nJet",
-        "Jet_eta",
-        "Jet_pt",
         "Jet_DeepFlavourB", "Jet_DeepFlavourBB", "Jet_DeepFlavourLEPB",
         "Jet_DeepCSVb", "Jet_DeepCSVbb"
       )
