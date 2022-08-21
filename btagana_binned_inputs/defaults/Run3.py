@@ -3,7 +3,6 @@ common = {
     "custom", # add this to varGroups_cfi.py
     "EventInfo", "PV",
     "JetInfo", "JetSV",
-    "JetDeepFlavour", "JetDeepCSV", "DeepFlavourFeat",
     "CSVTagVar", "CSVTagTrackVar"
   ],
   "eras": [ "Run3" ],
